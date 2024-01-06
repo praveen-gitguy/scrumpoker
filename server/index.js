@@ -8,7 +8,7 @@ const app = express();
 const server = createServer(app);
 const io = new Server(server, {
     cors: {
-        origin: "https://scrumpoker-visi-dw8l150v6-praveen-gitguy.vercel.app/"
+        origin: "*"
     }
 })
 
