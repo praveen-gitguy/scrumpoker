@@ -90,7 +90,7 @@ export function Scrum() {
 
         </div>
 
-        {!showResult && <div className="d-flex gap-4">
+        {!showResult && <div className="d-flex gap-4 flex-wrap">
             {[1, 2, 3, 5, 8, 13, 21].map(el => <button key={el} onClick={() => vote(el)} className={`btn ${voteValue === el ? 'btn-success' : 'btn-outline-primary'}`} style={{ maxWidth: "10rem", width: "100%" }}>{el}</button>)}
         </div>}
     </div>

@@ -33,18 +33,23 @@ export function AddUserToGroup() {
     }
 
 
-    return <div>
-        <form noValidate onSubmit={handleFormSubmit}>
-            <input ref={userNameRef} type="text" placeholder="Username" />
-            <select value={selectedGroup} onChange={(e) => {
-                setSelectedGroup(e.target.value)
-            }}>
-                <option value={''}>Select</option>
-                {groups.map(group =>
-                    <option key={group.slug} value={group.slug}>{group.name}</option>
-                )}
-            </select>
-            <button type="submit">Start</button>
+    return <div className="container shadow p-5 d-flex justify-content-center align-items-center">
+        <form noValidate className="d-flex flex-column gap-3" onSubmit={handleFormSubmit} >
+            <div className="form-group">
+                <input ref={userNameRef} type="text" placeholder="Username" className="form-control" />
+            </div>
+
+            <div className="form-group">
+                <select class="form-control" value={selectedGroup} onChange={(e) => {
+                    setSelectedGroup(e.target.value)
+                }}>
+                    <option value={''}>Select Group</option>
+                    {groups.map(group =>
+                        <option key={group.slug} value={group.slug}>{group.name}</option>
+                    )}
+                </select>
+            </div>
+            <button type="submit" className="btn btn-outline-primary">Join</button>
         </form>
     </div>
 }
