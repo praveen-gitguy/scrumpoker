@@ -52,18 +52,19 @@ export function Scrum() {
     }
 
     function result() {
+        const usersVoted = connectedUsers.filter(user => user.vote > 0);
         const total = connectedUsers.reduce((acc, curr) => acc + curr.vote, 0);
-        const avg = total / connectedUsers.length;
+        const avg = total / usersVoted.length;
         socket.emit("show-result", { avg, group: params.groupId });
     }
 
-    return <div className="container shadow p-5 d-flex flex-column gap-4">
+    return (<div className="container shadow p-5 d-flex flex-column gap-4">
 
         <div>
             {showResult ? <button className="btn btn-outline-primary" onClick={reset}>Reset</button> : voteCount > 0 ? <button className="btn btn-outline-info" onClick={result}>Show Result</button> : <></>}
         </div>
         {showResult && <div>
-            <h1>Avg: {showResult}</h1>
+            <h2>Result: {showResult.toFixed(2)}</h2>
         </div>}
 
         <div className="d-flex gap-4 flex-wrap">
@@ -93,5 +94,5 @@ export function Scrum() {
         {!showResult && <div className="d-flex gap-4 flex-wrap">
             {[1, 2, 3, 5, 8, 13, 21].map(el => <button key={el} onClick={() => vote(el)} className={`btn ${voteValue === el ? 'btn-success' : 'btn-outline-primary'}`} style={{ maxWidth: "10rem", width: "100%" }}>{el}</button>)}
         </div>}
-    </div>
+    </div>);
 }
